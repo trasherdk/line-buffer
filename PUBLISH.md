@@ -2,12 +2,13 @@
 
 ## Releasing
 
-1. Bump the version in `package.json`
-2. Commit and tag:
+1. Bump the version in `package.json` and commit on your branch
+2. Merge to master, push, tag, then push the tag:
 
 ```bash
-git add package.json
-git commit -m "v1.0.0"
+git checkout master
+git merge develop
+git push origin master
 git tag v1.0.0
 git push --follow-tags
 ```
