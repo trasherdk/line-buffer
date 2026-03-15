@@ -15,6 +15,13 @@ git push --follow-tags
 
 Pushing the `v*` tag triggers CI to build, test, and publish to npm.
 
+To re-release the same version (e.g. after a failed publish), force the tag:
+
+```bash
+git tag -f v1.0.0
+git push origin v1.0.0 --force
+```
+
 ## First publish
 
 The package must exist on npm before the CI workflow can publish. Do the initial release manually from the terminal:
