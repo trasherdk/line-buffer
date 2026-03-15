@@ -17,7 +17,7 @@
   "scripts": {
     "build": "tsc",
     "test": "vitest run",
-    "prepublishOnly": "pnpm build"
+    "prepublishOnly": "npm run build"
   },
   "engines": {
     "node": ">=18"
