@@ -1,22 +1,30 @@
 {
-  "name": "line-buffer",
-  "version": "0.1.4",
+  "name": "@trasherdk/line-buffer",
+  "version": "1.0.0",
+  "packageManager": "pnpm@10.32.1",
+  "type": "module",
   "description": "For reading stream's data as lines.",
-  "main": "./src/index.js",
-  "scripts": {
-    "test": "ava"
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
   },
-  "ava": {
-    "files": [
-      "./tests/*.js",
-      "./tests/**/*.js"
-    ],
-    "concurrency": 5,
-    "failFast": true
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run",
+    "prepublishOnly": "pnpm build"
+  },
+  "engines": {
+    "node": ">=18"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/xpepermint/line-buffer.git"
+    "url": "git+https://github.com/trasherdk/line-buffer.git"
   },
   "keywords": [
     "buffer",
@@ -30,12 +38,17 @@
     "reader"
   ],
   "bugs": {
-    "url": "https://github.com/xpepermint/line-buffer/issues"
+    "url": "https://github.com/trasherdk/line-buffer/issues"
   },
-  "homepage": "https://github.com/xpepermint/line-buffer#readme",
+  "homepage": "https://github.com/trasherdk/line-buffer#readme",
   "author": "Kristijan Sedlak (Xpepermint)",
+  "contributors": [
+    "trasherdk"
+  ],
   "license": "MIT",
   "devDependencies": {
-    "ava": "0.16.x"
+    "@types/node": "^25.5.0",
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.0"
   }
 }

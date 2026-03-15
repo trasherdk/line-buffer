@@ -1,27 +1,32 @@
-![Build Status](https://travis-ci.org/xpepermint/line-buffer.svg?branch=master)&nbsp;[![NPM Version](https://badge.fury.io/js/line-buffer.svg)](https://badge.fury.io/js/line-buffer)&nbsp;[![Dependency Status](https://gemnasium.com/xpepermint/line-buffer.svg)](https://gemnasium.com/xpepermint/line-buffer)
-
-# line-buffer
+# @trasherdk/line-buffer
 
 > For reading stream's data as lines.
 
-This is an open source [npm](http://npmjs.com) package from [Node.js](http://nodejs.org). The source code is available on [GitHub](https://github.com/xpepermint/line-buffer) where you can also find our [issue tracker](https://github.com/xpepermint/line-buffer/issues).
+This is a maintained fork of [line-buffer](https://github.com/xpepermint/line-buffer) by Kristijan Sedlak, which is no longer actively maintained. This fork has been modernized with TypeScript strict mode, ESM-only output, and current tooling.
+
+## Changes from the original
+
+- Rewritten as strict TypeScript
+- ESM-only (no CommonJS)
+- Vitest instead of AVA
+- Node.js >= 18
 
 ## Install
 
 ```
-$ npm install --save line-buffer
+pnpm add @trasherdk/line-buffer
 ```
 
 ## Example
 
-```js
-import {LineBuffer} from 'line-buffer';
+```ts
+import { LineBuffer } from '@trasherdk/line-buffer';
 
-let buffer = new LineBuffer();
-buffer.feed('abc\ndef\r\nghi'); //-> ['abc', 'def', 'ghi']
-buffer.feed('123\r'); //-> []
-buffer.feed('\n456'); //-> ['123']
-buffer.feed('\n'); //-> ['456']
+const buffer = new LineBuffer();
+buffer.feed('abc\ndef\r\nghi'); // -> ['abc', 'def', 'ghi']
+buffer.feed('123\r');           // -> []
+buffer.feed('\n456');            // -> ['123']
+buffer.feed('\n');               // -> ['456']
 ```
 
 ## API
@@ -30,29 +35,31 @@ buffer.feed('\n'); //-> ['456']
 
 > A core buffer class.
 
-**linebuffer.feed(data)**:Array
+**linebuffer.feed(data): string[]**
 
-> A method for feeding the buffer with data.
+> Feeds the buffer with data and returns any complete lines extracted.
 
 | Option | Type | Required | Default | Description
 |--------|------|----------|---------|------------
-| data | String|Buffer | No | - | A chunk of data to fill the buffer.
+| data | `string \| Buffer \| Uint8Array` | No | - | A chunk of data to fill the buffer.
 
-**linebuffer.drain()**
+**linebuffer.drain(): void**
 
-> A method for clearing the buffer.
+> Clears the buffer.
 
 **Event: linebuffer.on('line', (line) => {})**
 
 > Emitted when a new line of data is available.
 
 | Argument | Type | Description
-|--------|------|----------
-| line | Buffer | A line of data.
+|----------|------|------------
+| line | `string` | A line of data.
 
 **Event: linebuffer.on('drain', () => {})**
 
 > Emitted when the buffer is cleared.
+
+See [PUBLISH.md](PUBLISH.md) for release and publish instructions.
 
 ## License (MIT)
 
