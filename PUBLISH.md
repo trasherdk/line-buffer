@@ -17,7 +17,14 @@ Pushing the `v*` tag triggers CI to build, test, and publish to npm.
 
 ## First publish
 
-The package must exist on npm before trusted publishing can be configured. For the initial publish, add an `NPM_TOKEN` repository secret (Settings > Secrets and variables > Actions) with a granular access token from [npmjs.com](https://www.npmjs.com/settings/~/tokens).
+The package must exist on npm before the CI workflow can publish. Do the initial release manually from the terminal:
+
+```bash
+pnpm build
+pnpm publish --access public
+```
+
+Log in first with `npm login` if needed. After the first version is on npm, add an `NPM_TOKEN` repository secret (Settings > Secrets and variables > Actions) so future tag pushes can publish via CI.
 
 ## Switching to trusted publishing
 
